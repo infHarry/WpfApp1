@@ -5,24 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
+        Icon="/Resources/icon.png"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="300" Width="600">
+        ResizeMode="NoResize"
+        Title="我的小工具" Height="300" Width="500">
     <Grid>
-        <TabControl HorizontalAlignment="Center" Height="265" VerticalAlignment="Center" Width="580">
-            <TabItem Header="合并PDF">
-                <Grid Background="#FFE5E5E5">
-                    
+        <TabControl>
+            <TabItem Header="合并PDF" Height="20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="80"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90*"/>
+                        <ColumnDefinition Width="320*"/>
+                        <ColumnDefinition Width="90*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="Tab1_TextBlock1" Style="{StaticResource myTextBlockStyle}" Grid.Column="0" Grid.Row="0" Text="数据文件夹"/>
+                    <TextBlock x:Name="Tab1_TextBlock2" Style="{StaticResource myTextBlockStyle}" Grid.Column="0" Grid.Row="1" Text="保存文件夹"/>
+
+                    <TextBox x:Name="Tab1_TextBox1" Style="{StaticResource myTextBoxStyle}" Grid.Column="1" Grid.Row="0" Width="300" Height="70" PreviewDragOver="Tab1_TextBox1_PreviewDragOver" PreviewDrop="Tab1_TextBox1_PreviewDrop"/>
+                    <TextBox x:Name="Tab1_TextBox2" Style="{StaticResource myTextBoxStyle}" Grid.Column="1" Grid.Row="1" Width="300" Height="70" PreviewDragOver="Tab1_TextBox2_PreviewDragOver" PreviewDrop="Tab1_TextBox2_PreviewDrop"/>
+
+                    <Button x:Name="Tab1_Btn1" Grid.Column="2" Grid.Row="0" Style="{StaticResource myBtnStyle}" Content="选择文件夹" Click="Tab1_Btn1_Click"/>
+                    <Button x:Name="Tab1_Btn2" Grid.Column="2" Grid.Row="1" Style="{StaticResource myBtnStyle}" Content="选择文件夹" Click="Tab1_Btn2_Click"/>
+                    <Button x:Name="Tab1_Btn3" Grid.Column="2" Grid.Row="2" Style="{StaticResource myBtnStyle}" Content="开始" Click="Tab1_Btn3_Click"/>
+
                 </Grid>
             </TabItem>
             <TabItem Header="测试">
-                <Grid Background="#FFE5E5E5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="53*"/>
-                        <ColumnDefinition Width="29*"/>
-                    </Grid.ColumnDefinitions>
-                </Grid>
+                
             </TabItem>
         </TabControl>
-
     </Grid>
 </Window>
