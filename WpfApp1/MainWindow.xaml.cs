@@ -109,19 +109,27 @@ namespace WpfApp1
                 MessageBox.Show("请选择数据文件夹");
                 return;
             }
+            // 修复Tab1_TextBox2.Text不为空时不会合并的BUG
+            string saveFilePath;
             if (string.IsNullOrEmpty(Tab1_TextBox2.Text))
             {
-                string saveFilePath = Tab1_TextBox1.Text + "\\0000合并.pdf";
-                if (File.Exists(saveFilePath))
-                {
-                    File.Delete(saveFilePath);
-                }
-                string[] pdfFiles = Directory.GetFiles(Tab1_TextBox1.Text.ToString(), "*.pdf");
-                MergeMultiplePDFIntoSinglePDF(saveFilePath, pdfFiles);
+                saveFilePath = Tab1_TextBox1.Text + "\\0000合并.pdf";
             }
+            else
+            {
+                saveFilePath = Tab1_TextBox2.Text + "\\0000合并.pdf";
+            }
+            if (File.Exists(saveFilePath))
+            {
+                File.Delete(saveFilePath);
+            }
+
+            string[] pdfFiles = Directory.GetFiles(Tab1_TextBox1.Text.ToString(), "*.pdf");
+            MergeMultiplePDFIntoSinglePDF(saveFilePath, pdfFiles);
             MessageBox.Show("完成合并!");
             Tab1_TextBox1.Text = "";
             Tab1_TextBox2.Text = "";
+            // 结束
         }
         private static void MergeMultiplePDFIntoSinglePDF(string outputFilePath, string[] pdfFiles)
         {
